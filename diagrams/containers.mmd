@@ -1,0 +1,33 @@
+---
+config:
+  layout: elk
+---
+flowchart LR
+    aluno["Aluno: consulta e registra treinos"]
+    professor["Professor: prescreve e acompanha"]
+    admin["Administrador: gerencia a plataforma"]
+    subgraph sistema["HyFit / MatchFit: visão lógica de containers"]
+        app["Aplicativo cliente<br/>Interface inferida dos contratos da API<br/>Implementação não inspecionada"]
+        api["API REST: Node.js + TypeScript + Express<br/>Autenticação, treinos, alunos e cobranças<br/>Casos de uso e jobs no mesmo backend"]
+        db[("MySQL<br/>Usuários, sessões, treinos e demais dados")]
+        app -->|"HTTP/JSON; HTTPS requerido em produção"| api
+        api -->|"SQL via Sequelize"| db
+    end
+    scheduler["Agendador externo<br/>Fornecedor e frequência a definir"]
+    identity["Google / Firebase Auth"]
+    payment["Asaas: pagamentos"]
+    storage["Google Cloud Storage: arquivos"]
+    email["E-mail: Mailtrap, SES ou SMTP<br/>Alternativas configuráveis"]
+    push["Expo: notificações push"]
+    fitness["Strava / Polar: atividades físicas"]
+    aluno --> app
+    professor --> app
+    admin --> app
+    scheduler -->|"HTTP /v1/crons/* com segredo"| api
+    api -->|"Verifica identidade externa"| identity
+    api -->|"Chamadas de cobrança"| payment
+    payment -->|"Webhooks"| api
+    api -->|"Upload e acesso a arquivos"| storage
+    api -->|"Envio pelo provedor selecionado"| email
+    api -->|"Envio de notificações"| push
+    api -->|"Autorização e sincronização"| fitness

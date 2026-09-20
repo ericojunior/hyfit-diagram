@@ -1,0 +1,12 @@
+{
+  "name": "hyfit-diagram",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Discovery de arquitetura com Mermaid para a Unidade III",
+  "scripts": {
+    "docs:sync": "node scripts/sync-diagrams.mjs",
+    "docs:check": "node scripts/sync-diagrams.mjs --check",
+    "docs:render": "mmdc -i diagrams/containers.mmd -o diagrams/rendered/containers.svg -b white -w 1800 && mmdc -i diagrams/concluir-sessao.mmd -o diagrams/rendered/concluir-sessao.svg -b white -w 1800"
+  },
+  "devDependencies": { "@mermaid-js/mermaid-cli": "11.14.0" }
+}

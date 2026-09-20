@@ -1,0 +1,11 @@
+sequenceDiagram
+    actor Aluno
+    participant App
+    participant API
+    participant Banco
+    Aluno->>App: Concluir treino
+    App->>API: Solicitar conclusão
+    API->>Banco: Salvar conclusão
+    Banco-->>API: Confirmação
+    API-->>App: Sucesso
+    App-->>Aluno: Treino concluído

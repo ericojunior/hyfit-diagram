@@ -1,0 +1,39 @@
+sequenceDiagram
+    autonumber
+    actor Aluno
+    participant App as Aplicativo cliente
+    participant API as API REST
+    participant DB as MySQL via Sequelize
+    Note over App,DB: Sessão de treino existente. Fluxo de UI proposto, backend inspecionado.
+    Aluno->>App: Concluir sessão
+    App->>API: POST /v1/workout-sessions/{sessionId}/complete<br/>Bearer JWT e checkInDate opcional
+    API->>API: Verifica JWT
+    break Token ausente ou inválido
+        API-->>App: 401
+    end
+    API->>DB: Consulta UserSession ativa e User
+    DB-->>API: Sessão e usuário, ou ausência
+    API->>API: Verifica expiração e usuário ativo
+    break Sessão inválida ou usuário inativo
+        API-->>App: 401
+    end
+    API->>DB: Busca WorkoutSession por id e userId autenticado
+    DB-->>API: Sessão de treino ou ausência
+    alt Não encontrada ou pertence a outro usuário
+        API-->>App: 404
+    else Estado diferente de SCHEDULED e MISSED
+        API-->>App: 400
+    else Estado permitido
+        API->>DB: UPDATE status = COMPLETED e checkInAt<br/>Data informada ou horário atual do servidor
+        alt Gravação confirmada
+            DB-->>API: Sucesso
+            API-->>App: 200 e mensagem de conclusão
+            App-->>Aluno: Exibe confirmação
+        else Falha inesperada na gravação
+            DB-->>API: Erro
+            API-->>App: 500
+            App-->>Aluno: Informa falha sem confirmar conclusão
+        end
+    end
+    Note over API,DB: Leitura e atualização separadas.<br/>Sem garantia de atomicidade da transição.
+    Note over App,API: Repetição após conclusão retorna 400.<br/>Resposta perdida exige consulta do estado.
