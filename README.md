@@ -2,7 +2,7 @@
 
 Atividade da Unidade III: documentação de um sistema do cotidiano de desenvolvimento, com descrição em linguagem natural, diagrama estrutural e diagrama comportamental em Mermaid, gerados e revisados com auxílio de GenAI.
 
-**Documentação publicada:** [ericojunior/hyfit-diagram](https://github.com/ericojunior/hyfit-diagram), fork público do [repositório indicado para a atividade](https://github.com/EricoJuniordeMorais/hyfit-diagram). A conta disponível nesta sessão não tem permissão de escrita no original; a contribuição será encaminhada por pull request.
+**Documentação publicada:** [ericojunior/hyfit-diagram](https://github.com/ericojunior/hyfit-diagram), fork público do [repositório indicado para a atividade](https://github.com/EricoJuniordeMorais/hyfit-diagram). A conta disponível nesta sessão não tem permissão de escrita no original; a contribuição está no [pull request #1](https://github.com/EricoJuniordeMorais/hyfit-diagram/pull/1).
 
 **Sistema escolhido:** plataforma de gestão de treinos e acompanhamento de alunos. O repositório da atividade usa o nome HyFit; a implementação de referência se identifica como **MatchFit API**. Esta documentação trata ambos como o mesmo objeto de estudo, sem afirmar que houve uma mudança oficial de marca.
 

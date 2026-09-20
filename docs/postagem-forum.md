@@ -2,7 +2,7 @@
 
 Repositório com a documentação completa: https://github.com/ericojunior/hyfit-diagram
 
-A documentação foi publicada neste fork público e encaminhada ao repositório originalmente indicado por pull request.
+A documentação foi publicada neste fork público e encaminhada ao repositório originalmente indicado pelo pull request: https://github.com/EricoJuniordeMorais/hyfit-diagram/pull/1.
 
 Escolhi o HyFit/MatchFit, uma plataforma de gestão de treinos e acompanhamento de alunos baseada em uma API do meu contexto de desenvolvimento. Fiz um discovery documental do backend e usei GenAI para gerar dois diagramas em Mermaid: uma visão de containers inspirada no C4 e uma sequência da conclusão de uma sessão de treino. O README reúne o escopo, responsabilidades, integrações, restrições, diagramas renderizados e decisões da revisão.
 
